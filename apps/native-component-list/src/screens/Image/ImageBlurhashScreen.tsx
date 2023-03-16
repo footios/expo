@@ -8,9 +8,19 @@ import { Colors } from '../../constants';
 const blurhash = 'WgF}G?az0fs.x[jat7xFRjNHt6s.4;oe-:RkVtkCi^Nbo|xZRjWB';
 
 export default function ImageBlurhashScreen() {
+  const imageViewRef = React.useRef<Image>();
+
+  React.useEffect(() => {
+    (async function () {
+      console.log('function:', imageViewRef.current?.dupa);
+      console.log('result:', await imageViewRef.current?.dupa?.());
+    })();
+  }, []);
+
   return (
     <View style={styles.container}>
       <Image
+        ref={imageViewRef}
         style={styles.image}
         source={{ uri: 'https://picsum.photos/seed/175/3000/2000' }}
         placeholder={{ blurhash, width: 18, height: 12 }}

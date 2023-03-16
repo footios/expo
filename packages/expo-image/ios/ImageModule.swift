@@ -88,6 +88,13 @@ public final class ImageModule: Module {
       OnViewDidUpdateProps { view in
         view.reload()
       }
+
+      AsyncFunction("dupa") { (viewTag: Int) -> String in
+        guard let view = self.appContext?.findView(withTag: viewTag, ofType: ImageView.self) else {
+          return "view not found"
+        }
+        return "view has been found"
+      }.runOnQueue(.main)
     }
 
     Function("prefetch") { (urls: [URL]) in
